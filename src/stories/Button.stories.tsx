@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable */
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Button } from './Button';

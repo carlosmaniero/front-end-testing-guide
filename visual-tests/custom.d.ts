@@ -1,17 +1,18 @@
-import { Page } from './../src/stories/Page';
+import { Browser } from 'puppeteer';
+/* eslint-disable no-var */
+/* eslint-disable vars-on-top */
 import { IScopedQueryUtils } from 'pptr-testing-library/lib/typedefs';
-import { Browser, ElementHandle } from 'puppeteer';
 
 declare global {
     var browser: Browser;
-};
+}
 
-declare module "puppeteer" {
-    interface Page {
-        getDocument(): Promise<ElementHandle>
+declare module 'puppeteer' {
+    // eslint-disable-next-line @typescript-eslint/no-empty-interface
+    interface ElementHandle extends IScopedQueryUtils {
     }
 
-    interface ElementHandle extends IScopedQueryUtils {
-
+    interface Page {
+        getDocument(): Promise<ElementHandle>
     }
 }
