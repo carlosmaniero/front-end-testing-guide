@@ -24,7 +24,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/*.ts* src/**/*.ts* visual-tests/tests/**/*.ts* visual-tests/tests/*.ts*",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "setup": "yarn install && yarn --cwd visual-tests setup"
   },
   "eslintConfig": {
     "extends": [
