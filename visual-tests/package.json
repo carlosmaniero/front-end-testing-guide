@@ -3,13 +3,21 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "docker:build": "docker build -t front-end-testing-guide-visual-tests .",
+    "docker:run": "docker run --rm  -it -v `pwd`/tests:/usr/visual-tests/tests front-end-testing-guide-visual-tests",
+    "test": "yarn docker:run"
+  },
   "devDependencies": {
     "@types/jest": "^27.0.1",
+    "@types/jest-image-snapshot": "^4.3.1",
     "jest": "^27.0.6",
+    "jest-image-snapshot": "^4.5.1",
     "ts-jest": "^27.0.5",
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "pptr-testing-library": "^0.6.5",
     "puppeteer": "^10.2.0"
   }
 }
