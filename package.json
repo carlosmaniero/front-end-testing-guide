@@ -35,7 +35,8 @@
     "test:visual:ci": "start-server-and-test storybook:ci \"http://localhost:6006/iframe.html\" test:visual",
     "test:visual": "eval `node visual-tests/set-env.js` && yarn --cwd visual-tests test",
     "test:e2e": "yarn --cwd e2e test",
-    "test:e2e:ci": "APP_HOST=localhost:3421 yarn build && start-server-and-test start:production \"http://localhost:3421/\" test:e2e"
+    "test:e2e:build": "APP_HOST=localhost:3421 yarn test:e2e",
+    "test:e2e:ci": "APP_HOST=localhost:3421 yarn build && start-server-and-test start:production \"http://localhost:3421/\" test:e2e:build"
   },
   "eslintConfig": {
     "extends": [
