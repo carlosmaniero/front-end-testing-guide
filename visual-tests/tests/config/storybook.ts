@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ElementHandle, Page, Viewport } from 'puppeteer';
 import { STORYBOOK_HOST } from './environment';
 
@@ -7,13 +6,10 @@ const getComponentPage = (component: string) => `http://${STORYBOOK_HOST}/iframe
 type GetComponentCallback = (page: Page, document: ElementHandle) => Promise<void>;
 
 export const goToComponent = async (component: string, fn: GetComponentCallback): Promise<void> => {
-  console.log('Opening tab');
   const page = await browser.newPage();
-  console.log(`Opening component: ${getComponentPage(component)}`);
   await page.goto(getComponentPage(component));
 
   await fn(page, await page.getDocument());
-  console.log('closing tab');
   await page.close();
 };
 
@@ -71,6 +67,12 @@ export const runWithViewports = async (
   const viewport = viewports[0];
 
   await page.setViewport(viewport);
+  await page.evaluate(($viewport: Viewport) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    document.getElementById('root')!.style.width = `${$viewport.width}px`;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    document.getElementById('root')!.style.height = `${$viewport.height}px`;
+  }, JSON.parse(JSON.stringify(viewport)));
   await fn(viewport);
   await runWithViewports(page, viewports.slice(1), fn);
 };
