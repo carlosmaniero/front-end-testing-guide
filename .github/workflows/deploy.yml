@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies ⚙️
-        run: yarn
+        run: yarn setup
       - name: Linting 🧹
         run: yarn lint
       - name: Testing 🧪
