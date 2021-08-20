@@ -5,7 +5,8 @@ describe('Homepage', () => {
     const homePage = new HomePage();
 
     await homePage.open(async () => {
-      expect(await homePage.getFilenameText()).not.toBeNull();
+      expect(await homePage.getPokemon('Bulbasaur')).not.toBeNull();
+      expect(await homePage.getPokemon('Sandslash')).not.toBeNull();
     });
   });
 });

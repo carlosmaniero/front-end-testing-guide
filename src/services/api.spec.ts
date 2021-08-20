@@ -36,6 +36,10 @@ describe('API', () => {
       .get('/fanzeyi/pokemon.json/master/pokedex.json')
       .reply(200, successResponse);
 
-    expect(await fetchPokedex()).toEqual([{ ...pokemon, count: 0 }]);
+    expect(await fetchPokedex()).toEqual([{
+      ...pokemon,
+      count: 0,
+      sprite: 'https://veekun.com/dex/media/pokemon/main-sprites/omegaruby-alphasapphire/1.png',
+    }]);
   });
 });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { CardGrid } from '../../design-system/card/CardGrid';
 import { Pokemon } from '../../model/Pokemon';
 import { pokedex } from '../../services/api';
@@ -8,7 +8,7 @@ export interface PokedexProps {
     fetch?: typeof pokedex
 }
 
-export const Pokedex = ({ fetch }: PokedexProps) => {
+export const Pokedex = ({ fetch }: PokedexProps): ReactElement => {
   const fetchFn = fetch || pokedex;
   const [pokemon, setPokemon] = useState<Pokemon[] | undefined>();
 
