@@ -33,7 +33,7 @@
     "setup": "yarn install && yarn --cwd visual-tests setup && yarn --cwd e2e setup",
     "storybook:ci": "yarn storybook:build && yarn storybook:serve",
     "test:visual:ci": "start-server-and-test storybook:ci \"http://localhost:6006/iframe.html\" test:visual",
-    "test:visual": "eval `node visual-tests/set-env.js` && yarn --cwd visual-tests test wget -O - http://\"$STORYBOOK_HOST\" && yarn --cwd visual-tests test",
+    "test:visual": "eval `node visual-tests/set-env.js` && yarn --cwd visual-tests test",
     "test:e2e": "yarn --cwd e2e test",
     "test:e2e:ci": "APP_HOST=localhost:3421 yarn build && start-server-and-test start:production \"http://localhost:3421/\" test:e2e"
   },
