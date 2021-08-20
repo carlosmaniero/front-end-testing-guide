@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "docker:build": "docker build -t front-end-testing-guide-visual-tests .",
-    "docker:run": "source set-env.sh && docker run --rm -e STORYBOOK_HOST --net=host -v `pwd`/tests:/usr/visual-tests/tests front-end-testing-guide-visual-tests",
-    "setup": "yarn install && yarn docker:build",
+    "docker:run": "eval `node set-env.js` && echo \"$STORYBOOK_HOST\" && docker run --rm -e STORYBOOK_HOST --net=host -v `pwd`/tests:/usr/visual-tests/tests front-end-testing-guide-visual-tests",
+    "setup": "eval `node set-env.js` && echo \"$STORYBOOK_HOST\" && yarn install && yarn docker:build",
     "test": "yarn docker:run"
   },
   "devDependencies": {
