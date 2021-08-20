@@ -6,9 +6,16 @@ require('pptr-testing-library/extend');
 
 beforeAll(async (): Promise<void> => {
   global.browser = await puppeteer.launch(CHROME_PATH ? {
-    pipe: true,
     executablePath: CHROME_PATH,
-    args: ['--no-sandbox', '--disable-dev-shm-usage'],
+    headless: true,
+    devtools: true,
+    args: [
+      '--ignore-certificate-errors',
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-accelerated-2d-canvas',
+      '--disable-gpu',
+    ],
   } : undefined);
 });
 
