@@ -7,5 +7,5 @@ export interface Pokemon {
     french: string,
   },
   count: number,
-  sprite: 'https://veekun.com/dex/media/pokemon/main-sprites/omegaruby-alphasapphire/1.png',
+  sprite: string,
 }

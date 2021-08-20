@@ -36,7 +36,7 @@ export const Pokecard = ({ pokemon }: PokecardProps): ReactElement => {
       <ContentWrapper>
         <h1>{pokemon.name.english}</h1>
         <h2>{pokemon.name.japanese}</h2>
-        <img src={pokemon.sprite} alt={`${pokemon.name.english} sprite`} />
+        <img width="120px" height="120px" src={pokemon.sprite} alt={`${pokemon.name.english} sprite`} />
         <Counter max={10} min={0} value={count} onChange={(newCount) => setCount(newCount)} />
       </ContentWrapper>
     </Card>

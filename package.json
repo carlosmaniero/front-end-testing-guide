@@ -83,6 +83,7 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "http-server": "^13.0.0",
+    "nock": "^13.1.1",
     "start-server-and-test": "^1.13.1"
   }
 }

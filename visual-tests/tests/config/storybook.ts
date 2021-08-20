@@ -8,9 +8,21 @@ type GetComponentCallback = (page: Page, document: ElementHandle) => Promise<voi
 export const goToComponent = async (component: string, fn: GetComponentCallback): Promise<void> => {
   const page = await browser.newPage();
   await page.goto(getComponentPage(component));
-
   await fn(page, await page.getDocument());
   await page.close();
+};
+
+export const waitForAllImagesToLoad = async (page: Page): Promise<void> => {
+  await page.evaluate(`(async () => {
+    const selectors = Array.from(document.querySelectorAll('img'));
+    await Promise.all(selectors.map((img) => {
+      if (img.complete) return Promise.resolve();
+      return new Promise((resolve, reject) => {
+        img.addEventListener('load', resolve);
+        img.addEventListener('error', reject);
+      });
+    }));
+  })()`);
 };
 
 export const componentToMatchSnapshot = async (page: Page, padding = 20): Promise<void> => {
