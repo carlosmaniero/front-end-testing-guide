@@ -1,0 +1,32 @@
+name: Test, Build and Deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  unitTest:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Install Dependencies ⚙️
+        run: yarn
+      - name: Linting 🧹
+        run: yarn lint
+      - name: Testing 🧪
+        run: yarn test
+  visualTest:
+    name: Visual Tests 👓
+    needs: unitTest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Install Dependencies ⚙️
+        run: yarn
+      - name: Install Dependencies ⚙️
+        run: yarn --cwd visual-tests setup
+      - name: Testing 🧪
+        run: yarn test:visual:ci
