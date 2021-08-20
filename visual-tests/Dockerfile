@@ -29,4 +29,4 @@ USER pptruser
 
 ENV CHROME_PATH='/usr/bin/google-chrome'
 # Run tests
-CMD ["yarn", "jest"]
+CMD ["yarn", "jest", "--runInBand"]
