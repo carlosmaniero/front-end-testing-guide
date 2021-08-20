@@ -10,6 +10,7 @@ export const goToComponent = async (component: string, fn: GetComponentCallback)
   await page.goto(getComponentPage(component));
 
   await fn(page, await page.getDocument());
+  await page.close();
 };
 
 export const componentToMatchSnapshot = async (page: Page, padding = 20): Promise<void> => {
