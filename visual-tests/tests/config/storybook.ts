@@ -9,7 +9,7 @@ type GetComponentCallback = (page: Page, document: ElementHandle) => Promise<voi
 export const goToComponent = async (component: string, fn: GetComponentCallback): Promise<void> => {
   console.log('Opening tab');
   const page = await browser.newPage();
-  console.log('Opening component');
+  console.log(`Opening component: ${getComponentPage(component)}`);
   await page.goto(getComponentPage(component));
 
   await fn(page, await page.getDocument());
