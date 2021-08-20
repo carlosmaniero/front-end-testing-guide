@@ -19,16 +19,19 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:production": "http-server build -p 3421 -s",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/*.ts* src/**/*.ts* visual-tests/tests/**/*.ts* visual-tests/tests/*.ts*",
+    "lint": "eslint \"**/*.{ts,tsx}\"",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "setup": "yarn install && yarn --cwd visual-tests setup",
+    "setup": "yarn install && yarn --cwd visual-tests setup && yarn --cwd e2e setup",
     "storybook:ci": "yarn storybook --quiet --ci",
-    "test:visual": "start-server-and-test storybook:ci \"http://localhost:6006/iframe.html\" test:visual:run",
-    "test:visual:run": "yarn --cwd visual-tests test"
+    "test:visual:ci": "start-server-and-test storybook:ci \"http://localhost:6006/iframe.html\" test:visual",
+    "test:visual": "yarn --cwd visual-tests test",
+    "test:e2e": "yarn --cwd e2e test",
+    "test:e2e:ci": "APP_HOST=localhost:3421 yarn build && start-server-and-test start:production \"http://localhost:3421/\" test:e2e"
   },
   "eslintConfig": {
     "extends": [
@@ -38,7 +41,8 @@
     "overrides": [
       {
         "files": [
-          "**/*.stories.*"
+          "**/*.stories.*",
+          "**/jest.setup.ts"
         ],
         "rules": {
           "import/no-anonymous-default-export": "off"
@@ -73,6 +77,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "http-server": "^13.0.0",
     "start-server-and-test": "^1.13.1"
   }
 }
