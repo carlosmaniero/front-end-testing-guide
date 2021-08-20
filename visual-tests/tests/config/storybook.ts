@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ElementHandle, Page, Viewport } from 'puppeteer';
 import { STORYBOOK_HOST } from './environment';
 
@@ -6,10 +7,13 @@ const getComponentPage = (component: string) => `http://${STORYBOOK_HOST}/iframe
 type GetComponentCallback = (page: Page, document: ElementHandle) => Promise<void>;
 
 export const goToComponent = async (component: string, fn: GetComponentCallback): Promise<void> => {
+  console.log('Opening tab');
   const page = await browser.newPage();
+  console.log('Opening component');
   await page.goto(getComponentPage(component));
 
   await fn(page, await page.getDocument());
+  console.log('closing tab');
   await page.close();
 };
 
