@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "docker:build": "docker build -t front-end-testing-guide-visual-tests .",
-    "docker:run": "docker run --add-host=host.docker.internal:host-gateway --rm -v `pwd`/tests:/usr/visual-tests/tests front-end-testing-guide-visual-tests",
+    "docker:run": "source set-env.sh && docker run --rm -e STORYBOOK_HOST --net=host -v `pwd`/tests:/usr/visual-tests/tests front-end-testing-guide-visual-tests",
     "setup": "yarn install && yarn docker:build",
     "test": "yarn docker:run"
   },

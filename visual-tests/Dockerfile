@@ -27,7 +27,6 @@ RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
 # Run as non-privileged user.
 USER pptruser
 
-ENV STORYBOOK_HOST='host.docker.internal:6006'
 ENV CHROME_PATH='/usr/bin/google-chrome'
 # Run tests
 CMD ["yarn", "jest"]
