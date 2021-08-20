@@ -28,7 +28,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "storybook": "start-storybook -p 6006 -s public",
-    "storybook:build": "build-storybook -s public",
+    "storybook:build": "build-storybook -s public --quiet",
     "storybook:serve": "http-server storybook-static -p 6006 -s",
     "setup": "yarn install && yarn --cwd visual-tests setup && yarn --cwd e2e setup",
     "storybook:ci": "yarn storybook:build && yarn storybook:serve",
